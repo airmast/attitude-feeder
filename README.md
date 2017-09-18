@@ -1,6 +1,3 @@
-[![Travis CI Build Status](https://travis-ci.org/airmast/attitude-feeder.svg?branch=master)](https://travis-ci.org/airmast/attitude-feeder)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/b10a9rd1vj0n5fk6?svg=true)](https://ci.appveyor.com/project/mkrutyakov-ugcs/attitude-feeder/)
-
 Attitude Feeder
 ===============
 
@@ -22,14 +19,8 @@ Usage
 -----
 
 ```shell
-attfeeder [options] device
+attfeeder [options]
 ```
-
-Arguments:
-
-* `device`
-
-    MAVLink serial device (e.g. **/dev/ttyACM0** for Linux or **COM10** in case of Windows).
 
 Options:
 
@@ -40,6 +31,18 @@ Options:
 * `-v`, `--version`
 
     Displays version information.
+
+* `-s`, `--serial` `<serial>`
+
+    MAVLink serial device (e.g. '/dev/ttyACM0' or 'COM10' or regex like '/dev/ttyUSB{0,1}')
+
+* `-n`, `--network` `<network>`
+
+    MAVLink network device address (e.g. localhost or 127.0.0.1).
+
+* `-p`, `--port` `<port>`
+
+    MAVLink network device port.
 
 License
 -------
