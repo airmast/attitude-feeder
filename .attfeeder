@@ -1,0 +1,5 @@
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+LD_LIBRARY_PATH=$DIR
+export LD_LIBRARY_PATH
+$DIR/.attfeeder.bin "$@"
+

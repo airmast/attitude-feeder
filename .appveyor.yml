@@ -1,0 +1,50 @@
+version: '{branch}-{build}'
+
+build:
+  verbosity: minimal
+
+environment:
+  matrix:
+    - QTDIR: C:\Qt\5.8\msvc2013_64
+      PUSH_RELEASE: true
+      SHADOW_BUILD_DIR: C:\projects\attitude-feeder\build_windows
+
+install:
+  - choco install -y qbs --version 1.6.1
+  - choco install -y gnuwin32-sed.install
+  - set PATH=%QTDIR%\bin;%PATH%
+  - qbs config defaultProfile qt5
+  - qbs setup-toolchains --detect
+  - qbs setup-qt %QTDIR%\bin\qmake.exe qt5
+  - qbs config --list profiles
+  
+build_script:
+  - qbs --version
+  - mkdir %SHADOW_BUILD_DIR% 
+  - cd %SHADOW_BUILD_DIR% 
+  - qbs --file %APPVEYOR_BUILD_FOLDER%\attitude-feeder.qbs release
+  - copy %QTDIR%\bin\Qt5Core.dll release\install-root
+  - copy %QTDIR%\bin\Qt5Network.dll release\install-root
+  - copy %QTDIR%\bin\Qt5SerialPort.dll release\install-root
+  - IF DEFINED APPVEYOR_REPO_TAG_NAME echo %APPVEYOR_REPO_TAG_NAME%| sed -r "s/v?(.*)/\1/" > ver.tmp
+  - IF DEFINED APPVEYOR_REPO_TAG_NAME set /p VER=<ver.tmp
+  - del ver.tmp
+  - echo %VER%
+  - echo %APPVEYOR_BUILD_FOLDER%\attfeeder-windows-x86-%VER%\
+  - IF DEFINED APPVEYOR_REPO_TAG_NAME mkdir %APPVEYOR_BUILD_FOLDER%\attfeeder-windows-x86-%VER%
+  - IF DEFINED APPVEYOR_REPO_TAG_NAME copy release\install-root\ %APPVEYOR_BUILD_FOLDER%\attfeeder-windows-x86-%VER%
+  
+
+artifacts:
+  - name: attfeeder-windows-x86-%VER%
+    path: attfeeder-windows-x86-%VER%
+    type: zip
+
+deploy:
+  - provider: GitHub
+    auth_token:
+      secure: FCwxD3k4iDjp/+o3MzP+SfXbEphUXp9R4I49lDPTGJakBM/5NWi1f87nnozp700l 
+    artifact: attfeeder-windows-x86-%VER%
+    on:
+      appveyor_repo_tag: true
+

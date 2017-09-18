@@ -1,0 +1,25 @@
+#ifndef APP_VERSION_H
+#define APP_VERSION_H
+
+#define APP_VERSION_MAJOR 0
+#define APP_VERSION_MINOR 0
+#define APP_VERSION_RELEASE 0
+#define APP_VERSION_BUILD 0
+
+#define APP_NAME "app"
+#define APP_VERSION "0.0.0"
+#define APP_VERSION_LONG "0.0.0.0"
+#define APP_DATE "01.01.1970"
+
+#define APP_YEAR 1970
+
+#ifdef __cplusplus
+namespace C {
+const char * const AppName          = APP_NAME;
+const char * const AppVersion       = APP_VERSION;
+const char * const AppVersionLong   = APP_VERSION_LONG;
+const char * const AppDate          = APP_DATE;
+}
+#endif
+
+#endif // APP_VERSION_H
