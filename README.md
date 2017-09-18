@@ -1,7 +1,7 @@
 Attitude Feeder
 ===============
 
-MAVLink-compatible tool which listens for AHRS data on a serial interface and transmits it to the Camera Adapter via HTTP.
+MAVLink-compatible tool which listens for AHRS data on a serial or network interface and transmits it to the Camera Adapter via HTTP.
 
 Requirements
 ------------
