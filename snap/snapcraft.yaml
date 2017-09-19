@@ -1,0 +1,32 @@
+name: test-attitude-feeder-application # you probably want to 'snapcraft register <name>'
+version: '0.0.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Attitude angles feeder # 79 char long summary
+description: |
+  MAVLink-compatible tool which listens for AHRS data on a serial or network 
+  interface and transmits it to the Camera Adapter via HTTP.
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: devmode # use 'strict' once you have the right plugs and slots
+
+parts:
+  qt-dependencies:
+    plugin: x-qtdependencies
+
+  qbs:
+    after: [qt-dependencies]
+    source: https://download.qt.io/official_releases/qbs/1.6.1/qbs-src-1.6.1.tar.gz
+    plugin: qmake
+    qt-version: qt5
+    project-files:
+      - qbs.pro
+    
+  attfeeder:
+    after: [qbs, qt-dependencies]
+    source: https://github.com/airmast/attitude-feeder.git
+    plugin: x-qbs
+    qt-version: qt5
+
+apps:
+  test-attitude-feeder-application:
+    command: attfeeder
+
