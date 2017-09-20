@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     parser.addVersionOption();
 
     QCommandLineOption serialOption(QStringList() << "s" << "serial",
-                                    tr("MAVLink serial device (e.g. '/dev/ttyACM0' or 'COM10')."),
+                                    tr("MAVLink serial device (e.g. '/dev/ttyACM0' or 'COM10' or regex like '/dev/ttyUSB\\\\d')."),
                                     tr("serial"));
     parser.addOption(serialOption);
 
