@@ -34,7 +34,7 @@ Options:
 
 * `-s`, `--serial` `<serial>`
 
-    MAVLink serial device (e.g. '/dev/ttyACM0' or 'COM10' or regex like '/dev/ttyUSB{0,1}')
+    MAVLink serial device (e.g. '/dev/ttyACM0' or 'COM10' or regex like '/dev/ttyUSB\\\\d')
 
 * `-n`, `--network` `<network>`
 
