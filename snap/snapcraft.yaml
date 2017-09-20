@@ -10,7 +10,11 @@ confinement: devmode # use 'strict' once you have the right plugs and slots
 
 parts:
   qt-dependencies:
-    plugin: x-qtdependencies
+    plugin: nil
+    build-packages:
+      - libqt5serialport5-dev
+      - libqt5network5
+      - qtscript5-dev
 
   qbs:
     after: [qt-dependencies]
@@ -19,10 +23,12 @@ parts:
     qt-version: qt5
     project-files:
       - qbs.pro
+    prime:
+      - -*
     
   attfeeder:
     after: [qbs, qt-dependencies]
-    source: https://github.com/airmast/attitude-feeder.git
+    source: .
     plugin: x-qbs
     qt-version: qt5
 

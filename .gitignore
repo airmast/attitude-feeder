@@ -1,2 +1,8 @@
 *.qbs.user
+parts
+prime
+stage
+__pycache__
+.snapcraft
+*.snap
 
