@@ -1,12 +1,12 @@
-name: test-attitude-feeder-application # you probably want to 'snapcraft register <name>'
+name: attfeeder # you probably want to 'snapcraft register <name>'
 version: '0.0.1' # just for humans, typically '1.2+git' or '1.3.2'
 summary: Attitude angles feeder # 79 char long summary
 description: |
-  MAVLink-compatible tool which listens for AHRS data on a serial or network 
-  interface and transmits it to the Camera Adapter via HTTP.
+  Application that gets data from MAVLink-compatible AHRS and sends it to
+  CamAdapter via HTTP.
 
-grade: devel # must be 'stable' to release into candidate/stable channels
-confinement: devmode # use 'strict' once you have the right plugs and slots
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
 
 parts:
   qt-dependencies:
@@ -25,7 +25,7 @@ parts:
       - qbs.pro
     prime:
       - -*
-    
+
   attfeeder:
     after: [qbs, qt-dependencies]
     source: .
@@ -33,6 +33,5 @@ parts:
     qt-version: qt5
 
 apps:
-  test-attitude-feeder-application:
+  attfeeder:
     command: attfeeder
-
