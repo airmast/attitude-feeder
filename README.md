@@ -1,4 +1,4 @@
-[![Travis CI Build Status](https://travis-ci.org/airmast/attitude-feeder.svg?branch=master)](https://travis-ci.org/airmast/attitude-feeder)  
+[![Travis CI Build Status](https://travis-ci.org/airmast/attitude-feeder.svg?branch=master)](https://travis-ci.org/airmast/attitude-feeder)   
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/b10a9rd1vj0n5fk6?svg=true)](https://ci.appveyor.com/project/mkrutyakov-ugcs/attitude-feeder/)  
 
 Attitude Feeder
