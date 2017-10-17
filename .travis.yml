@@ -53,8 +53,7 @@ script:
  
 deploy:
   provider: releases
-  api_key:
-    secure: oNkixPZOqznyrlHK8u1V1zXSTveOACa1+hukGqnnBVI5USLHLjMxBRWImuZ1daPeWYK1SPrMIGPOGJ3vq6klUK4vfNW7HEOlLC2qFx+LTcL05/TUi+2IlJS5aKhykzYUh6RYtq+c2mXPCbK9FI1WWXotxZcFx/OxSsh0mCyLrgZYstl89+L/K1Yt5FeeCe+sCVtAsaiVxJnnoebX8SsbY3rklDpOvMhMxZWKA9NHd91JeHBQP/KE0A0C2xPHgupkMUHqSV/CMVbM4aq27olZHKgdpxBX8kyqYo9OnlMU8h5EBtf8tGD6tNTg4SyPjtTa8CYgJpoYAE/JSlaSYIMbuSxrKvVgKCo89Y+JJwSF3za3hhcclR0lpz8VBHbCkZfsRbJUglKvnWwnC55kicjGeN9O6hqXeoLdJOXsei3s98Y40lujpx1uHwE4GEG7gMnbpiL2D9nEK6RA5lQoRpDTmAk2mQ/ohfG/95VLh+uBV/Rd0D8WzxaOjXV5ThI4KI3gvKctygqQY5xkuZUgrxvGI3kZNX/tb21li/89NKWpY3ijYmTQsHMWI3ssKJWaMN0LHHj9DJMhvC9eooG/0wZmLD2ElK6PiPjrLtemKZkOGIEuJFBvrzDWnq5FvCOdyeaQk6pkdN6PS2hqEuobthRC+wf9vHnYpRGrEhk+r41DPXA=
+  api_key: $GITHUB_TOKEN
   file:
   - "${SHADOW_BUILD_DIR}/attfeeder-linux-x64-${VER}.tar.bz2"
   skip_cleanup: true
