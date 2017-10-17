@@ -126,13 +126,6 @@ private:
     void sendAngles(float roll, float pitch, float yaw);
 
     /**
-     * @brief Send gyroscope angle to the server by HTTP
-     * @param angle name of the angle we send ("roll", "pitch" or "yaw")
-     * @param value value of the angle in radians
-     */
-    void sendAngle(const QString &angle, float value);
-
-    /**
      * @brief Send gyroscope roll to the server
      * @param roll value of roll in radians
      */

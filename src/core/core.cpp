@@ -152,20 +152,14 @@ void Core::requestDataStream(MAV_DATA_STREAM stream, quint16 rate)
     m_mavlinkInterface->sendMessage(message);
 }
 
-void Core::sendAngle(const QString &angle, float value)
-{
-    QUrl requestUrl(QString("%1%2/imu_%3/%4")
-                    .arg(C::ApiHost)
-                    .arg(C::ApiPath)
-                    .arg(angle)
-                    .arg(value));
-    QNetworkReply *reply =
-            m_net.post(QNetworkRequest(requestUrl), QByteArray());
-    connect(reply, &QNetworkReply::finished, this, &Core::handleReply);
-}
-
 void Core::sendAngles(float roll, float pitch, float yaw) {
-    QUrl requestUrl(QString("%1%2/imu_all/%3:%4:%5")
+    qDebug() << QString("%1%2/attitude/%3,%4,%5")
+                .arg(C::ApiHost)
+                .arg(C::ApiPath)
+                .arg(roll)
+                .arg(pitch)
+                .arg(yaw);
+    QUrl requestUrl(QString("%1%2/attitude/%3,%4,%5")
                     .arg(C::ApiHost)
                     .arg(C::ApiPath)
                     .arg(roll)

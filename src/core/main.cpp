@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
                                      tr("network"), "127.0.0.1");
     parser.addOption(networkOption);
     QCommandLineOption portOption(QStringList() << "p" << "port",
-                                  tr("MAVLink network device port"),
+                                  tr("MAVLink network device port."),
                                   tr("port"), "5760");
     parser.addOption(portOption);
 
