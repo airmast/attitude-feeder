@@ -40,7 +40,7 @@ script:
 - cp /usr/lib/x86_64-linux-gnu/libicuuc.so.52 release/install-root
 - mv release/install-root/attfeeder release/install-root/.attfeeder.bin
 - cp ${TRAVIS_BUILD_DIR}/.attfeeder release/install-root/attfeeder
-- if [ -n "${TRAVIS_TAG+1}" ]; then 
+- if [ -n "${TRAVIS_TAG}" ]; then 
     VER=`echo $TRAVIS_TAG | sed -r "s/v?(.*)/\1/"` &&
     echo $VER &&
     export VER &&
