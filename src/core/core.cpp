@@ -32,6 +32,7 @@
 #include <QNetworkProxy>
 #include <QNetworkRequest>
 #include <QNetworkReply>
+#include <QSharedPointer>
 #include <QUrl>
 
 #include <QDebug>
@@ -107,7 +108,9 @@ void Core::handleReply()
     Q_ASSERT(reply);
     if (reply->error()) {
         qWarning().noquote() << tr("Warning: HTTP request failed ('%1').")
-                                .arg(reply->request().url().toString());
+                                .arg(reply->request().url().toString())
+                             << reply->errorString();
+        m_failure = true;
     }
     reply->deleteLater();
 }
@@ -165,8 +168,18 @@ void Core::sendAngles(float roll, float pitch, float yaw) {
                     .arg(roll)
                     .arg(pitch)
                     .arg(yaw));
+
+    if (m_failure) {
+        QNetworkProxy proxy;
+        proxy.setType(QNetworkProxy::NoProxy);
+        m_net.reset(new QNetworkAccessManager());
+        m_net->setProxy(proxy);
+        qDebug() << "New QNetworkAccessManager";
+        m_failure = false;
+    }
+
     QNetworkReply *reply =
-            m_net.post(QNetworkRequest(requestUrl), QByteArray());
+            m_net->post(QNetworkRequest(requestUrl), QByteArray());
     connect(reply, &QNetworkReply::finished, this, &Core::handleReply);
 }
 
@@ -174,7 +187,9 @@ bool Core::start()
 {
     QNetworkProxy proxy;
     proxy.setType(QNetworkProxy::NoProxy);
-    m_net.setProxy(proxy);
+
+    m_net = QSharedPointer<QNetworkAccessManager>(new QNetworkAccessManager());
+    m_net->setProxy(proxy);
 
     if (!m_mavlinkInterface->open()) {
         qCritical().noquote() << tr("Error: Failed to open MAVLink device.");

@@ -180,7 +180,9 @@ private:
     /**
      * @brief Network access manager to interface with an HTTP server
      */
-    QNetworkAccessManager m_net;
+    QSharedPointer<QNetworkAccessManager> m_net;
+
+    bool m_failure = false;
 };
 
 #endif // #ifndef CORE_H
